@@ -1,0 +1,36 @@
+{
+  "npmScope": "rich-stock",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "rich-stock-e2e": {
+      "tags": []
+    },
+    "rich-stock": {
+      "tags": []
+    },
+    "rich-stock-photos": {
+      "tags": []
+    },
+    "rich-stock-ui": {
+      "tags": []
+    },
+    "rich-stock-core": {
+      "tags": []
+    },
+    "api-services": {
+      "tags": []
+    },
+    "interfaces": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    }
+  }
+}

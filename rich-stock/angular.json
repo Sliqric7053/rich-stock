@@ -1,0 +1,369 @@
+{
+  "version": 1,
+  "projects": {
+    "rich-stock": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/rich-stock",
+      "sourceRoot": "apps/rich-stock/src",
+      "prefix": "rs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/rich-stock",
+            "index": "apps/rich-stock/src/index.html",
+            "main": "apps/rich-stock/src/main.ts",
+            "polyfills": "apps/rich-stock/src/polyfills.ts",
+            "tsConfig": "apps/rich-stock/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/rich-stock/src/favicon.ico",
+              "apps/rich-stock/src/assets"
+            ],
+            "styles": [
+              "apps/rich-stock/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/rich-stock/src/environments/environment.ts",
+                  "with": "apps/rich-stock/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "rich-stock:build",
+            "proxyConfig": "apps/rich-stock/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rich-stock:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "rich-stock:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/rich-stock/tsconfig.app.json",
+              "apps/rich-stock/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/rich-stock/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/rich-stock/jest.config.js",
+            "tsConfig": "apps/rich-stock/tsconfig.spec.json",
+            "setupFile": "apps/rich-stock/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "rich-stock-e2e": {
+      "root": "apps/rich-stock-e2e",
+      "sourceRoot": "apps/rich-stock-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/rich-stock-e2e/cypress.json",
+            "tsConfig": "apps/rich-stock-e2e/tsconfig.e2e.json",
+            "devServerTarget": "rich-stock:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rich-stock:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/rich-stock-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/rich-stock-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "rich-stock-photos": {
+      "projectType": "library",
+      "root": "libs/rich-stock/photos",
+      "sourceRoot": "libs/rich-stock/photos/src",
+      "prefix": "rich-stock",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/rich-stock/photos/tsconfig.lib.json",
+              "libs/rich-stock/photos/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/rich-stock/photos/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/rich-stock/photos/jest.config.js",
+            "tsConfig": "libs/rich-stock/photos/tsconfig.spec.json",
+            "setupFile": "libs/rich-stock/photos/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "rich-stock-ui": {
+      "projectType": "library",
+      "root": "libs/rich-stock/ui",
+      "sourceRoot": "libs/rich-stock/ui/src",
+      "prefix": "rich-stock",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/rich-stock/ui/tsconfig.lib.json",
+              "libs/rich-stock/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/rich-stock/ui/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/rich-stock/ui/jest.config.js",
+            "tsConfig": "libs/rich-stock/ui/tsconfig.spec.json",
+            "setupFile": "libs/rich-stock/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "rich-stock-core": {
+      "projectType": "library",
+      "root": "libs/rich-stock/core",
+      "sourceRoot": "libs/rich-stock/core/src",
+      "prefix": "rich-stock",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/rich-stock/core/tsconfig.lib.json",
+              "libs/rich-stock/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/rich-stock/core/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/rich-stock/core/jest.config.js",
+            "tsConfig": "libs/rich-stock/core/tsconfig.spec.json",
+            "setupFile": "libs/rich-stock/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "api-services": {
+      "root": "libs/api-services",
+      "sourceRoot": "libs/api-services/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-services/tsconfig.lib.json",
+              "libs/api-services/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api-services/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-services/jest.config.js",
+            "tsConfig": "libs/api-services/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/interfaces/tsconfig.lib.json",
+              "libs/interfaces/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/interfaces/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "tsConfig": "libs/interfaces/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": [
+              "apps/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "rich-stock"
+}

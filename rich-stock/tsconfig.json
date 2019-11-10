@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rich-stock/rich-stock/photos": ["libs/rich-stock/photos/src/index.ts"],
+      "@rich-stock/rich-stock/ui": ["libs/rich-stock/ui/src/index.ts"],
+      "@rich-stock/rich-stock/core": ["libs/rich-stock/core/src/index.ts"],
+      "@rich-stock/api-services": ["libs/api-services/src/index.ts"],
+      "@rich-stock/interfaces": ["libs/interfaces/src/index.ts"],
+      "@rich-stock/*": ["apps/api/src/app/movietracker/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
